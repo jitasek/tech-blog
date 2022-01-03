@@ -16,13 +16,27 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get one user without their password
+// Get one user without their password, include their posts and comments
 router.get("/:id", async (req, res) => {
   try {
     const allUsers = await User.findByPk(req.params.id, {
       attributes: {
         exclude: ["password"],
       },
+      include: [
+        {
+          model: Post,
+          attributes: ["id", "title", "content", "created_at"],
+        },
+        {
+          model: Comment,
+          attributes: ["id", "comment_text", "created_at"],
+          include: {
+            model: Post,
+            attributes: ["title"],
+          },
+        },
+      ],
     });
     res.status(200).json(allUsers);
   } catch (error) {
