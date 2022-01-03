@@ -16,10 +16,10 @@ Post.init(
       allowNull: false,
     },
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len: [1, 300],
+        len: [1, 500],
       },
     },
     user_id: {

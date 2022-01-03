@@ -9,13 +9,17 @@ const seedComments = require("./comment-seeds");
 // };
 
 const seed = async () => {
-  await sequelize.sync({ force: true });
-  // Create users, posts, comments
-  await seedUsers();
-  await seedPosts();
-  await seedComments();
+  try {
+    await sequelize.sync({ force: true });
+    // Create users, posts, comments
+    await seedUsers();
+    await seedPosts();
+    await seedComments();
 
-  await sequelize.close();
+    await sequelize.close();
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 seed();
