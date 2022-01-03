@@ -1,4 +1,5 @@
 const router = require("express").Router();
+
 const { User, Post, Comment } = require("../../models");
 
 // Get all users without their passwords
@@ -49,6 +50,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Create user
+// Create user - in the auth folder
 
 module.exports = router;
