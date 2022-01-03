@@ -89,6 +89,25 @@ router.post("/", async (req, res) => {
   }
 });
 // Update post
+router.put("/:id", async (req, res) => {
+  try {
+    await Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    return res.status(200).json({ data: "succesfully updated" });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: "Failed to update post." });
+  }
+});
 
 // Delete post
 
