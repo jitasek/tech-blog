@@ -75,6 +75,19 @@ router.get("/:id", async (req, res) => {
 
 // Create post
 
+router.post("/", async (req, res) => {
+  try {
+    await Post.create({
+      title: req.body.title,
+      content: req.body.content,
+      user_id: req.body.user_id,
+    });
+    return res.status(200).json({ data: "success" });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: "Failed to create post." });
+  }
+});
 // Update post
 
 // Delete post
