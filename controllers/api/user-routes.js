@@ -38,6 +38,10 @@ router.get("/:id", async (req, res) => {
         },
       ],
     });
+    if (!allUsers) {
+      res.status(404).json("No user with this ID in the database");
+      return;
+    }
     res.status(200).json(allUsers);
   } catch (error) {
     console.log(error);
