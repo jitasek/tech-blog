@@ -73,6 +73,24 @@ router.post("/", async (req, res) => {
 });
 
 // Update comment
+router.put("/:id", async (req, res) => {
+  try {
+    await Comment.update(
+      {
+        comment_text: req.body.comment_text,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    return res.status(200).json({ data: "comment successfully updated" });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ error: "Failed to update comment." });
+  }
+});
 
 // Delete comment
 
