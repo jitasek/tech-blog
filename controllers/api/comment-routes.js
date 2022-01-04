@@ -58,6 +58,19 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create comment
+router.post("/", async (req, res) => {
+  try {
+    await Comment.create({
+      comment_text: req.body.comment_text,
+      post_id: req.body.post_id,
+      user_id: req.body.user_id,
+    });
+    return res.status(200).json({ data: "comment succesfully created" });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: "Failed to create comment." });
+  }
+});
 
 // Update comment
 
