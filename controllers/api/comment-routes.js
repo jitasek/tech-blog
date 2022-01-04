@@ -93,5 +93,18 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete comment
+router.delete("/:id", async (req, res) => {
+  try {
+    await Comment.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.status(200).json({ data: "Comment successfully deleted." });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: "Failed to delete comment." });
+  }
+});
 
 module.exports = router;
