@@ -1,0 +1,22 @@
+<div class="post">
+  <div class="card border border-dark p-2 m-2">
+    <div class="card-header">
+      {{title}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{content}}</p>
+        <footer class="blockquote-footer">
+          Posted by
+          {{user.username}}
+          on
+          {{formatDate created_at}}
+        </footer>
+        <a href="#" class="btn btn-primary m-2">Edit post</a>
+
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<script src="../public/js/edit-post.js"></script>

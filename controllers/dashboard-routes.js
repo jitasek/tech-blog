@@ -195,7 +195,23 @@ router.put("/comment/edit/:id", async (req, res) => {
 });
 
 // Delete comment
+router.delete("/comment/:id", async (req, res) => {
+  try {
+    await Comment.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
 // Add(create) comment
+router.get("/comment/new", async (req, res) => {
+  res.render("newcomment", {
+    loggedIn: true,
+  });
+});
 
 module.exports = router;

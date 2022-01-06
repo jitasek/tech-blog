@@ -2,5 +2,13 @@
   {{#each posts as |post|}}
     {{>post}}
   {{/each}}
+
+  <div>
+    <a href="/newpost"><button
+        id="button-new"
+        type="button"
+        class="btn btn-success"
+      >+ New Post</button></a>
+  </div>
 </div>
-{{!-- <script src="/js/dashboard.js"></script> --}}
+<script src="/js/dashboard.js"></script>
