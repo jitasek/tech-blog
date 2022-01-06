@@ -1,0 +1,16 @@
+<div class="comment">
+  <div class="card">
+    <h5 class="card-header">Comment on post ID:
+      {{post_id}}, posted by
+      {{user.username}}
+      on
+      {{formatDate created_at}}</h5>
+    <div class="card-body">
+      <p class="card-text">
+        {{comment_text}}
+      </p>
+    </div>
+  </div>
+</div>
+
+{{! This is a comment with: comment_text, post_id and a date (created_at) }}
