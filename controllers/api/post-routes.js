@@ -77,12 +77,13 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    await Post.create({
+    const newPost = {
       title: req.body.title,
       content: req.body.content,
-      user_id: req.body.user_id,
-    });
-    return res.status(200).json({ data: "success" });
+      user_id: 1,
+    };
+    const successPost = await Post.create(newPost);
+    return res.status(200).json(successPost.get({ plain: true }));
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({ error: "Failed to create post." });

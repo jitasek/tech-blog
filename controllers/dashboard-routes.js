@@ -45,6 +45,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Add (create) post
+router.get("/post/new", async (req, res) => {
+  res.render("newpost", {
+    loggedIn: true,
+  });
+});
+
 // get one of user's posts
 router.get("/post/:id", async (req, res) => {
   try {
@@ -82,19 +89,6 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-// Edit (update) post
-router.put("/post/edit/:id", async (req, res) => {
-  try {
-    const data = await Post.findByPk(req.params.id);
-    const post = data.get({ plain: true });
-    // response
-    res.render("dashboard", post);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json("Error retrieving post data from database.");
-  }
-});
-
 // Delete post
 router.delete("/post/:id", async (req, res) => {
   try {
@@ -108,49 +102,21 @@ router.delete("/post/:id", async (req, res) => {
   }
 });
 
-// Add (create) post
-router.get("/post/new", async (req, res) => {
-  res.render("newpost", {
-    loggedIn: true,
-  });
-});
-
-// Find all user's comments
-router.get("/", async (req, res) => {
+// Edit (update) post
+router.put("/post/edit/:id", async (req, res) => {
   try {
-    const allComments = await Comment.findAll({
-      // where: {
-      //   user_id: req.session.user_id,
-      // },
-      attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-      order: [["created_at", "DESC"]],
-      include: [
-        {
-          model: Post,
-          attributes: ["id", "title", "content", "created_at"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-        {
-          model: User,
-          attributes: ["username"],
-        },
-      ],
-    });
+    const data = await Post.findByPk(req.params.id);
+    const post = data.get({ plain: true });
     // response
-    const comments = allComments.map((comment) => comment.get({ plain: true }));
-    // res.render("dashboard", { comments, loggedIn: true });
-    res.render("dashboard");
+    res.render("dashboard", post);
   } catch (error) {
     console.log(error);
-    res.status(500).json("Error retrieving comments data from database.");
+    res.status(500).json("Error retrieving post data from database.");
   }
 });
 
 // Find one of user's comments
-router.get("/post/:id", async (req, res) => {
+router.get("/comment/:id", async (req, res) => {
   try {
     const allComments = await Comment.findOne({
       // where: {
