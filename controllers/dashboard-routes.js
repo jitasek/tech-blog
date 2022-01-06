@@ -53,6 +53,29 @@ router.get("/post/new", async (req, res) => {
   });
 });
 
+// Edit post
+router.get("/post/edit/:id", async (req, res) => {
+  // Retrieve the current post content
+  try {
+    const currPost = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "title", "content", "created_at"],
+      include: [User],
+    });
+    res.render("editpost", {
+      post: currPost.get({ plain: true }),
+      loggedIn: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.render("editpost", {
+      error: "Something went wrong while retrieving the post",
+    });
+  }
+});
+
 // get one of user's posts
 router.get("/post/:id", async (req, res) => {
   try {
@@ -88,20 +111,6 @@ router.get("/post/:id", async (req, res) => {
     console.log(error);
     res.status(500).json("Error retrieving post data from database.");
   }
-});
-
-// Delete post
-router.delete("/post/:id", async (req, res) => {
-  try {
-    await Post.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-  } catch (error) {
-    console.error(error.message);
-  }
-  restore.status(200).render("dashboard");
 });
 
 // Edit (update) post

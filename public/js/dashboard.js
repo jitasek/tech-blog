@@ -13,3 +13,7 @@ const deletePost = async (id) => {
     alert("Something went wrong while creating a post on server sideΩ");
   }
 };
+
+const updatePost = (id) => {
+  document.location.replace("/dashboard/post/edit/" + id);
+};
