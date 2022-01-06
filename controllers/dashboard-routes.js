@@ -85,7 +85,7 @@ router.get("/post/:id", async (req, res) => {
 router.put("/post/edit/:id", async (req, res) => {
   try {
     const data = await Post.findByPk(req.params.id);
-    const post = data.get({plain: true})
+    const post = data.get({ plain: true });
     // response
     res.render("dashboard", post);
   } catch (error) {
@@ -102,14 +102,17 @@ router.delete("/post/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-
   } catch (error) {
     console.error(error.message);
-    return ??? ;
   }
 });
 
 // Add (create) post
+router.get("/post/new", async (req, res) => {
+  res.render("newpost", {
+    loggedIn: true,
+  });
+});
 
 // Get all comments
 

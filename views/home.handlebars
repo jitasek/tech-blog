@@ -1,19 +1,22 @@
 <div>
   {{#each post as |post|}}
-    <div class="card border border-dark p-2 m-2">
-      <div class="card-header">
-        {{title}}
-      </div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p>{{content}}</p>
-          <footer class="blockquote-footer">
-            Posted by
-            {{user.username}}
-            on
-            {{formatDate created_at}}
-          </footer>
-        </blockquote>
+    {{>post}}
+    <div class="post">
+      <div class="card border border-dark p-2 m-2">
+        <div class="card-header">
+          {{title}}
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{content}}</p>
+            <footer class="blockquote-footer">
+              Posted by
+              {{user.username}}
+              on
+              {{formatDate created_at}}
+            </footer>
+          </blockquote>
+        </div>
       </div>
     </div>
   {{/each}}
