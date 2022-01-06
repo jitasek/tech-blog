@@ -111,7 +111,6 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete post
-
 router.delete("/:id", async (req, res) => {
   try {
     await Post.destroy({
@@ -119,7 +118,7 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    return res.status(500).json({ data: "successfully deleted" });
+    return res.status(200).json({ data: "successfully deleted" });
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({ error: "Failed to delete post." });

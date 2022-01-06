@@ -11,6 +11,11 @@
           {{user.username}}
           on
           {{formatDate created_at}}
+          <button
+            type="button"
+            onclick="deletePost({{id}})"
+            class="btn btn-danger"
+          >Delete</button>
         </footer>
       </blockquote>
     </div>

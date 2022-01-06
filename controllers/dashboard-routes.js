@@ -4,6 +4,7 @@ const sequelize = require("../config/connection");
 const { User, Post, Comment } = require("../models");
 const { post } = require("./home-routes");
 const withAuth = require("../utils/auth");
+const { restore } = require("../models/Post");
 
 // find all users posts
 router.get("/", async (req, res) => {
@@ -38,7 +39,7 @@ router.get("/", async (req, res) => {
     // response
     const posts = allPosts.map((post) => post.get({ plain: true }));
     // res.render("dashboard", { posts, loggedIn: true });
-    res.render("dashboard");
+    res.render("dashboard", { posts });
   } catch (error) {
     console.log(error);
     res.status(500).json("Error retrieving posts data from database.");
@@ -100,6 +101,7 @@ router.delete("/post/:id", async (req, res) => {
   } catch (error) {
     console.error(error.message);
   }
+  restore.status(200).render("dashboard");
 });
 
 // Edit (update) post
