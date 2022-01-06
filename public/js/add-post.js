@@ -20,7 +20,7 @@ const createPost = async (postTitle, postContent) => {
 };
 
 let createPostBtn = document.getElementById("create-post");
-createPostBtn.addEventListener("click", (e) => {
+editPostBtn.addEventListener("click", (e) => {
   let postTitle = document.getElementById("post-title").value.trim();
   let postContent = document.getElementById("post-content").value.trim();
   //Check post title is not empty

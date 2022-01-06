@@ -23,6 +23,9 @@
 {{else}}
 
   <div class="form-group">
+    <div>
+      <h5>ID <span id="post-id">{{post.id}}</span></h5>
+    </div>
     <label for="post-title">Post Title</label>
     <input
       type="text"
@@ -40,6 +43,6 @@
       rows="3"
     >{{post.content}}</textarea>
   </div>
-  <button type="submit" id="create-post" class="btn btn-primary">Update</button>
+  <button type="submit" id="edit-post" class="btn btn-primary">Update</button>
 {{/if}}
 <script src="/js/edit-post.js"></script>

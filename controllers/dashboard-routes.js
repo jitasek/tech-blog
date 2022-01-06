@@ -114,7 +114,7 @@ router.get("/post/:id", async (req, res) => {
 });
 
 // Edit (update) post
-router.put("/post/edit/:id", async (req, res) => {
+/*router.put("/post/edit/:id", async (req, res) => {
   try {
     const data = await Post.findByPk(req.params.id);
     const post = data.get({ plain: true });
@@ -125,7 +125,7 @@ router.put("/post/edit/:id", async (req, res) => {
     res.status(500).json("Error retrieving post data from database.");
   }
 });
-
+*/
 // Find one of user's comments
 router.get("/comment/:id", async (req, res) => {
   try {
