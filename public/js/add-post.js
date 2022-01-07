@@ -20,7 +20,7 @@ const createPost = async (postTitle, postContent) => {
 };
 
 let createPostBtn = document.getElementById("create-post");
-editPostBtn.addEventListener("click", (e) => {
+createPostBtn.addEventListener("click", (e) => {
   let postTitle = document.getElementById("post-title").value.trim();
   let postContent = document.getElementById("post-content").value.trim();
   //Check post title is not empty
@@ -30,6 +30,9 @@ editPostBtn.addEventListener("click", (e) => {
     return;
   }
   // Check if post content is not empty
+  if (postContent.length === 0) {
+    alert("Post needs to have content.");
+  }
 
   createPost(postTitle, postContent);
 });

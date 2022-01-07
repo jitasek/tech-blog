@@ -79,10 +79,7 @@ router.get("/post/edit/:id", async (req, res) => {
 // get one of user's posts
 router.get("/post/:id", async (req, res) => {
   try {
-    const allPosts = await Post.findOne({
-      where: {
-        id: req.params.id,
-      },
+    const post = await Post.findByPk(req.params.id, {
       attributes: ["id", "title", "content", "created_at"],
       include: [
         {
@@ -106,26 +103,14 @@ router.get("/post/:id", async (req, res) => {
       ],
     });
     // response
-    res.render("dashboard");
+    console.log(post.get({ plain: true }));
+    res.render("single-post", { post: post.get({ plain: true }) });
   } catch (error) {
     console.log(error);
     res.status(500).json("Error retrieving post data from database.");
   }
 });
 
-// Edit (update) post
-/*router.put("/post/edit/:id", async (req, res) => {
-  try {
-    const data = await Post.findByPk(req.params.id);
-    const post = data.get({ plain: true });
-    // response
-    res.render("dashboard", post);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json("Error retrieving post data from database.");
-  }
-});
-*/
 // Find one of user's comments
 router.get("/comment/:id", async (req, res) => {
   try {
@@ -182,13 +167,6 @@ router.delete("/comment/:id", async (req, res) => {
   } catch (error) {
     console.error(error.message);
   }
-});
-
-// Add(create) comment
-router.get("/comment/new", async (req, res) => {
-  res.render("newcomment", {
-    loggedIn: true,
-  });
 });
 
 module.exports = router;
