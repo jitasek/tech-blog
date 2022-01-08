@@ -12,6 +12,20 @@ const hbs = exphbs.create({ helpers }); // creates new handlebars instance for m
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const sess = {
+  secret: "secret value",
+  cookie: {
+    maxAge: 600000,
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
+
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
