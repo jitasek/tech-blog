@@ -90,7 +90,6 @@ router.get("/signup", async (req, res) => {
 router.get("/login", async (req, res) => {
   try {
     res.render("login");
-    console.log("request received", req.params);
 
     if (req.session.loggedIn) {
       res.redirect("/dasboard");

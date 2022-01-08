@@ -3,7 +3,7 @@ const loginUser = async () => {
   let password = document.getElementById("password").value.trim();
   // fetch the login page
   try {
-    let res = await fetch("/api/users/login", {
+    let res = await fetch("/auth/login", {
       method: "POST",
       body: JSON.stringify({
         username,
