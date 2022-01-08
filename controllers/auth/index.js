@@ -2,29 +2,6 @@ const router = require("express").Router();
 
 const { User, Post, Comment } = require("../../models");
 
-router.post("/login", async (req, res) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        username: req.body.username,
-      },
-    });
-    console.log(user);
-    if (!user) {
-      console.info("User does not exist.");
-      return res.status(404).json({ error: "Login failed." });
-    }
-    // Check if password is correct
-
-    // Save user data in session
-
-    return res.status(200).json({ data: "Logged in successfully." });
-  } catch (error) {
-    console.error(error.message);
-    return res.status(500).json({ error: "Login failed." });
-  }
-});
-
 router.post("/logout", (req, res) => {
   // if (req.session && req.session.logged_in) {
   //   req.session.destroy(() => {

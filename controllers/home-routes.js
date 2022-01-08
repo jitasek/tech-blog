@@ -86,9 +86,16 @@ router.get("/signup", async (req, res) => {
   }
 });
 
+// Send the login page
 router.get("/login", async (req, res) => {
   try {
     res.render("login");
+    console.log("request received", req.params);
+
+    if (req.session.loggedIn) {
+      res.redirect("/dasboard");
+      return;
+    }
   } catch (error) {
     console.error(error.message);
     res.status(500).json("Error rendering login.");

@@ -1,7 +1,11 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class User extends Model {}
+class User extends Model {
+  async checkPassword(givenPassword) {
+    return givenPassword === this.password;
+  }
+}
 
 User.init(
   {
