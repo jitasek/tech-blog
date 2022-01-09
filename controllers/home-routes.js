@@ -65,4 +65,12 @@ router.get("/login", async (req, res) => {
   }
 });
 
+// Logout
+router.get("/logout", (req, res) => {
+  // If the user is already logged in, redirect to the homepage
+  req.session.loggedIn = false;
+  delete req.session.userId;
+  res.redirect("/");
+});
+
 module.exports = router;

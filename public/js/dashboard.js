@@ -1,4 +1,4 @@
-console.log("Running dashboard.js");
+//console.log("Running dashboard.js");
 
 const deletePost = async (id) => {
   let res = await fetch("/api/posts/" + id, {

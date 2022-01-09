@@ -3,15 +3,15 @@ const beforeCreate = require("../../hooks/index");
 
 const { User, Post, Comment } = require("../../models");
 
-router.get("/logout", (req, res) => {
-  if (req.session && req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(200).render("login");
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+// router.get("/logout", (req, res) => {
+//   if (req.session && req.session.loggedIn) {
+//     req.session.destroy(() => {
+//       res.status(200).render("login");
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
 router.post("/login", async (req, res) => {
   try {
