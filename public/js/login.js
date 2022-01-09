@@ -13,6 +13,7 @@ const loginUser = async () => {
         "Content-Type": "application/json",
       },
     });
+    console.log(res.status);
     if (res.status === 200) {
       document.location.replace("/dashboard");
     } else {

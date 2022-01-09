@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const beforeCreate = require("../../hooks/index");
 
 const { User, Post, Comment } = require("../../models");
 
