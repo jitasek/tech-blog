@@ -75,7 +75,7 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-// Add login and sign-up
+// Add login and sign-up:
 //Send the sign up page
 router.get("/signup", async (req, res) => {
   try {
