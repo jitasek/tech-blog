@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
     // Once user is logged in, set up the session variable "loggedIn", save user data in session
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.user_id = user.isSoftDeleted;
+      req.session.userId = user.isSoftDeleted;
       return res
         .status(200)
         .json({ user: user, message: "You are logged in!" });

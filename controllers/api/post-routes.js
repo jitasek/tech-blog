@@ -80,7 +80,7 @@ router.post("/", async (req, res) => {
     const newPost = {
       title: req.body.title,
       content: req.body.content,
-      user_id: 1,
+      user_id: req.session.userId,
     };
     const successPost = await Post.create(newPost);
     return res.status(200).json(successPost.get({ plain: true }));
