@@ -16,8 +16,12 @@
           <a href="/">The Tech Blog</a>
         </h1>
       </header>
-      {{> public-navbar }}
-
+    {{#if loggedIn }}
+      {{> private-navbar}}
+    {{else}}
+      {{> public-navbar}}
+    {{/if}}
+      
       <main>
         {{{body}}}
       </main>

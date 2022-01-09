@@ -1,10 +1,9 @@
 <div>
-  {{#each post as |post|}}
-    {{>post}}
+  {{#each posts}}
     <div class="post">
       <div class="card border border-dark p-2 m-2">
         <div class="card-header">
-          {{title}}
+          {{post.title}}
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0">

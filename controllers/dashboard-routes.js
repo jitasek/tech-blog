@@ -40,7 +40,7 @@ router.get("/", async (req, res) => {
       // response
       const posts = allPosts.map((post) => post.get({ plain: true }));
       // res.render("dashboard", { posts, loggedIn: true });
-      res.render("dashboard", { posts });
+      res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
     } catch (error) {
       console.log(error);
       res.status(500).json("Error retrieving posts data from database.");
@@ -52,9 +52,13 @@ router.get("/", async (req, res) => {
 
 // Add (create) post
 router.get("/post/new", async (req, res) => {
-  res.render("newpost", {
-    loggedIn: true,
-  });
+  if (req.session.loggedIn) {
+    res.render("newpost", {
+      loggedIn: req.session.loggedIn,
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 // Edit post
@@ -70,12 +74,13 @@ router.get("/post/edit/:id", async (req, res) => {
     });
     res.render("editpost", {
       post: currPost.get({ plain: true }),
-      loggedIn: true,
+      loggedIn: req.session.loggedIn,
     });
   } catch (error) {
     console.log(error);
     res.render("editpost", {
       error: "Something went wrong while retrieving the post",
+      loggedIn: req.session.loggedIn,
     });
   }
 });
@@ -108,7 +113,10 @@ router.get("/post/:id", async (req, res) => {
     });
     // response
     console.log(post.get({ plain: true }));
-    res.render("single-post", { post: post.get({ plain: true }) });
+    res.render("single-post", {
+      post: post.get({ plain: true }),
+      loggedIn: req.session.loggedIn,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json("Error retrieving post data from database.");
@@ -140,7 +148,7 @@ router.get("/comment/:id", async (req, res) => {
       ],
     });
     // response
-    res.render("dashboard");
+    res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
     res.status(500).json("Error retrieving comment data from database.");
@@ -153,7 +161,7 @@ router.put("/comment/edit/:id", async (req, res) => {
     const data = await Comment.findByPk(req.params.id);
     const comment = data.get({ plain: true });
     // response
-    res.render("dashboard", comment);
+    res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
     res.status(500).json("Error retrieving comment data from database.");
