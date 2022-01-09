@@ -11,9 +11,9 @@ router.get("/", async (req, res) => {
   if (req.session && req.session.loggedIn) {
     try {
       const allPosts = await Post.findAll({
-        // where: {
-        //   user_id: req.session.user_id,
-        // },
+        where: {
+          user_id: req.session.userId,
+        },
         attributes: ["id", "title", "content", "created_at"],
         order: [["created_at", "DESC"]],
         include: [
