@@ -13,6 +13,7 @@ const dbPassword = process.env.DB_PASSWORD;
 
 let sequelize;
 if (process.env.JAWSDB_URL) {
+  console.log("Using JAWSDB");
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   sequelize = new Sequelize(dbName, dbUser, dbPassword, dbOptions);
