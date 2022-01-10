@@ -28,12 +28,12 @@ const signupUser = async () => {
       if (login.status === 200) {
         document.location.replace("/dashboard");
       } else {
-        console.error("Login failed");
+        alert("Signup failed");
       }
     } else {
-      console.error("Something went wrong on server while logging in");
+      alert("Something went wrong on server while singing up");
     }
   } catch (error) {
-    console.error("Exception while sending the request");
+    alert("Exception while sending the request");
   }
 };
