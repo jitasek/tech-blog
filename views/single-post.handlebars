@@ -24,6 +24,13 @@
   {{comment.id}}
   <div class="form-group">
     <label for="comment-text">{{comment.comment_text}}</label>
+    <footer class="blockquote-footer">
+      Commented by
+      {{comment.user.username}}
+      on
+      {{formatDate comment.created_at}}
+
+    </footer>
   </div>
 {{/each}}
 <hr />
