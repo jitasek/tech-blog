@@ -69,7 +69,13 @@ WHEN I am idle on the site for more than a set time, I am able to view comments 
 
 ## Mockup
 
-![Image](./images/)
+Homepage
+
+![Image](./public/images/home-screen.png)
+
+Dashboard
+
+![Image](./public/images/dashboard-screen.png)
 <br>
 <br>
 
