@@ -1,0 +1,54 @@
+<!--<form>-->
+<div class="post">
+  <div class="card border border-dark p-2 m-2">
+    <div class="card-header">
+      {{post.title}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{post.content}}</p>
+        <footer class="blockquote-footer">
+          Posted by
+          {{post.user.username}}
+          on
+          {{formatDate post.created_at}}
+
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+{{#each post.comments as |comment|}}
+  <hr />
+  <div class="form-group px-4">
+    <label for="comment-text">{{comment.comment_text}}</label>
+    <footer class="blockquote-footer">
+      Commented by
+      {{comment.user.username}}
+      on
+      {{formatDate comment.created_at}}
+
+    </footer>
+  </div>
+{{/each}}
+<hr />
+
+{{#if loggedIn}}
+  <div class="px-4">
+
+    <div class="form-group">
+      <label for="comment-text">Comment Text</label>
+      <textarea class="form-control" id="comment-text" rows="3"></textarea>
+    </div>
+    <input
+      type="button"
+      onclick="postComment({{post.id}})"
+      class="btn btn-primary"
+      value="Comment"
+    />
+  </div>
+{{/if}}
+<script src="/js/add-comment.js"></script>
+
+<!--</form>-->

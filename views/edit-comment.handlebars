@@ -1,0 +1,17 @@
+<div class="comment">
+  <div class="card">
+    <h5 class="card-header">Comment on post ID:
+      {{post_id}}, posted by
+      {{user.username}}
+      on
+      {{formatDate created_at}}</h5>
+    <div class="card-body">
+      <p class="card-text">
+        {{comment_text}}
+      </p>
+      <a href="#" class="btn btn-primary">Edit comment</a>
+    </div>
+  </div>
+</div>
+
+<script src="../public/js/edit-comment.js"></script>

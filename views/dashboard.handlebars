@@ -1,0 +1,27 @@
+<div>
+  {{#each posts as |post|}}
+    {{>post}}
+  {{/each}}
+
+  <div>
+    <a href="/dashboard/post/new"><button
+        id="button-new"
+        type="button"
+        class="btn btn-success"
+      >+ New Post</button></a>
+  </div>
+</div>
+{{!-- <div>
+  {{#each comment as |comment|}}
+    {{>comment}}
+  {{/each}}
+
+  <div>
+    <a href="/newcomment"><button
+        id="button-new"
+        type="button"
+        class="btn btn-success"
+      >+ New Comment</button></a>
+  </div>
+</div> --}}
+<script src="/js/dashboard.js"></script>
